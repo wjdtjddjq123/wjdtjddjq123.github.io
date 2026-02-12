@@ -1,29 +1,16 @@
-# 🚀 wjdtjddjq의 GitHub Pages
+# React + Vite
 
-이곳은 저의 개인 웹사이트 및 포트폴리오를 위한 저장소입니다.  
-GitHub Pages를 통해 호스팅되고 있습니다.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
----
+Currently, two official plugins are available:
 
-## 🔗 사이트 주소
-> **바로가기:** [https://wjdtjddjq123.github.io/](https://wjdtjddjq123.github.io/)
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
----
+## React Compiler
 
-## 🛠 사용 기술
-- **Language:** HTML5, CSS3
-- **Tools:** VS Code, GitLens
-- **Hosting:** GitHub Pages
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-## 📅 업데이트 기록
-- **2026-02-12:** GitHub Pages 저장소 생성 및 첫 배포 성공 🎉
-- **2026-02-12:** README 구성 및 환경 설정 완료
+## Expanding the ESLint configuration
 
----
-
-## 👨‍💻 나에 대하여
-- 안녕하세요! 웹 개발을 학습 중인 **wjdtjddjq**입니다.
-- 깔끔하고 직관적인 코드를 지향합니다.
-
----
-© 2026 wjdtjddjq. Powered by GitHub.
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
