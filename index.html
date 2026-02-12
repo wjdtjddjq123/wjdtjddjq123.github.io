@@ -1,13 +1,19 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>my-portfolio</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
-</html>
+<script type="module" src="/src/main.jsx"></script>
+
+<script type="module" src="/src/main.tsx"></script> ```
+
+---
+
+### 💡 왜 자꾸 이 에러가 날까요?
+우리가 프로젝트를 처음 만들었을 때는 JavaScript(`.jsx`) 기반이었는데, 중간에 TypeScript(`.tsx`)로 전환했기 때문입니다. 하지만 HTML 파일은 자동으로 업데이트되지 않아서 수동으로 "이제부터는 `.tsx` 파일을 읽어줘!"라고 알려줘야 합니다.
+
+---
+
+### 🚀 다시 시도 (터미널 명령어)
+
+수정하셨다면 다시 깃허브에 올려봅시다.
+
+```bash
+git add index.html
+git commit -m "Fix: point index.html to main.tsx"
+git push origin master
