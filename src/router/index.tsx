@@ -4,7 +4,6 @@ import DashboardPage from '@/components/pages/Dashboard'
 import DesignSystem  from '@/components/pages/DesignSystem'
 
 // HashRouter 사용 — GitHub Pages SPA 라우팅 호환
-// URL: yourname.github.io/portfolio/#/dashboard
 export default function AppRouter() {
   return (
     <HashRouter>

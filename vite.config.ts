@@ -6,7 +6,7 @@ export default defineConfig({
   // GitHub Pages 배포 시 레포 이름으로 변경
   // 예: base: '/portfolio/'
   // 로컬 개발 시: base: '/'
-  base: '/portfolio/',
+  base: '/',
   resolve: {
     alias: {
       '@': '/src',

@@ -55,7 +55,7 @@ function Sidebar({ col, onCol }: { col:boolean; onCol:(v:boolean)=>void }) {
     <aside className={cn('fixed left-0 top-0 h-full z-40 flex flex-col bg-surface border-r border-border transition-all duration-300', col?'w-[68px]':'w-[248px]')}>
       {/* Logo */}
       <div className={cn('h-16 flex items-center border-b border-border px-4 shrink-0', col?'justify-center':'justify-between')}>
-        {!col && <Link to="/" className="font-display font-bold text-lg text-tx"><span className="text-accent">{'<'}</span>YN<span className="text-accent">{'/>'}</span></Link>}
+        {!col && <Link to="/" className="font-display font-bold text-lg text-tx"><span className="text-accent">{'<'}</span>JSE<span className="text-accent">{'/>'}</span></Link>}
         <button type="button" onClick={()=>onCol(!col)}
           className="w-7 h-7 rounded-lg border border-border bg-surface-2 flex items-center justify-center text-tx-3 hover:text-tx hover:bg-surface hover:border-border-2 transition-all">
           {col ? <ChevronRight size={13}/> : <ChevronLeft size={13}/>}
@@ -85,8 +85,8 @@ function Sidebar({ col, onCol }: { col:boolean; onCol:(v:boolean)=>void }) {
       {/* User */}
       <div className={cn('p-3 border-t border-border', col?'flex justify-center':'')}>
         <div className={cn('flex items-center gap-3 p-2 rounded-xl hover:bg-surface-2 cursor-pointer transition-colors', col&&'justify-center')}>
-          <Avatar name="Your Name" size="sm" status="online"/>
-          {!col && <div className="flex-1 min-w-0"><div className="text-sm font-medium text-tx truncate">Your Name</div><div className="text-xs text-tx-3 truncate">Admin</div></div>}
+          <Avatar name="jeongseongeop" size="sm" status="online"/>
+          {!col && <div className="flex-1 min-w-0"><div className="text-sm font-medium text-tx truncate">jeongseongeop</div><div className="text-xs text-tx-3 truncate">Admin</div></div>}
         </div>
       </div>
     </aside>
@@ -139,7 +139,7 @@ export default function DashboardPage() {
               <Bell size={18}/>
               <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-accent"/>
             </button>
-            <Avatar name="Your Name" size="sm" status="online"/>
+            <Avatar name="jeongseongeop" size="sm" status="online"/>
           </div>
         </header>
 

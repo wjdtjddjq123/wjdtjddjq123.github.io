@@ -38,7 +38,7 @@ export default function Navbar() {
 
           {/* Logo */}
           <Link to="/" className="font-display font-bold text-xl text-tx tracking-tight shrink-0">
-            <span className="text-accent">{'<'}</span>YN<span className="text-accent">{'/>'}</span>
+            <span className="text-accent">{'<'}</span>JSE<span className="text-accent">{'/>'}</span>
           </Link>
 
           {/* Desktop — anchor links (home only) */}

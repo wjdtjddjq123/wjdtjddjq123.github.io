@@ -303,7 +303,7 @@ function Contact() {
             <p className="rv t-body-lg text-tx-2 mb-10">{t('contact.sub')}</p>
             <div className="rv space-y-3">
               {[
-                { icon:Mail,  label:'Email',    val:'your@email.com',     href:'mailto:your@email.com' },
+                { icon:Mail,  label:'Email',    val:'wjdtjddjq123@naver.com',     href:'mailto:wjdtjddjq123@naver.com' },
                 { icon:MapPin,label:'Location', val:'Seoul, Korea',       href:'#' },
                 { icon:Github,label:'GitHub',   val:'github.com/yourname',href:'https://github.com' },
               ].map(item=>(
@@ -351,7 +351,7 @@ function Footer() {
     <footer className="py-10 border-t border-border">
       <div className="wrap flex flex-col md:flex-row items-center justify-between gap-4">
         <span className="font-display font-bold text-xl text-tx">
-          <span className="text-accent">{'<'}</span>YN<span className="text-accent">{'/>'}</span>
+          <span className="text-accent">{'<'}</span>JSE<span className="text-accent">{'/>'}</span>
         </span>
         <p className="t-caption text-tx-3">© {new Date().getFullYear()} — Built with React + Vite + Tailwind + GSAP</p>
         <div className="flex gap-4">
