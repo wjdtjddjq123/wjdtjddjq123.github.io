@@ -304,8 +304,8 @@ function Contact() {
             <div className="rv space-y-3">
               {[
                 { icon:Mail,  label:'Email',    val:'wjdtjddjq123@naver.com',     href:'mailto:wjdtjddjq123@naver.com' },
-                { icon:MapPin,label:'Location', val:'Seoul, Korea',       href:'#' },
-                { icon:Github,label:'GitHub',   val:'github.com/yourname',href:'https://github.com' },
+                { icon:MapPin,label:'Location', val:'changwon, Korea',       href:'#' },
+                { icon:Github,label:'GitHub',   val:'github.com/wjdtjddjq123  ',href:'https://github.com' },
               ].map(item=>(
                 <a key={item.label} href={item.href}
                   className="flex items-center gap-4 p-4 rounded-xl border border-border bg-surface hover:border-accent/40 transition-all group">
