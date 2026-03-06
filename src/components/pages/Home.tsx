@@ -24,6 +24,13 @@ function Hero() {
     return ()=>ctx.revert()
   },[])
 
+  const handleAnchorClick = (href: string) => {
+    const element = document.querySelector(href)
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
   return (
     <section ref={ref} className="relative min-h-screen flex items-center overflow-hidden">
       {/* Grid bg */}
@@ -59,8 +66,8 @@ function Hero() {
 
         {/* CTAs */}
         <div data-h-cta className="mt-10 flex flex-wrap gap-4">
-          <Button as="a" href="#projects" size="lg" iconRight={<ArrowRight size={18}/>}>{t('hero.cta')}</Button>
-          <Button as="a" href="#contact" variant="outline" size="lg">{t('hero.cv')}</Button>
+          <Button as="a" href="#projects" onClick={(e) => { e.preventDefault(); handleAnchorClick('#projects') }} size="lg" iconRight={<ArrowRight size={18}/>}>{t('hero.cta')}</Button>
+          <Button as="a" href="#contact" onClick={(e) => { e.preventDefault(); handleAnchorClick('#contact') }} variant="outline" size="lg">{t('hero.cv')}</Button>
         </div>
 
         {/* Scroll hint */}
