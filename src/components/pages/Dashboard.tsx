@@ -17,6 +17,7 @@ const stats = [
   { label:'Live Projects',  val:'24',      chg:+3,    icon:'🚀', c:'text-accent bg-accent/10'        },
   { label:'Perf Score',     val:'97/100',  chg:+2.1,  icon:'⚡', c:'text-warning-700 bg-warning-50'  },
 ]
+
 const activities = [
   { user:'Alice',  action:'Deployed v2.4.0 to production', time:'2m',  type:'deploy'  },
   { user:'Bob',    action:'Merged PR #482 — dark mode',     time:'14m', type:'merge'   },

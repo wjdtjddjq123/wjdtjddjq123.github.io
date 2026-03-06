@@ -75,9 +75,7 @@ function Hero() {
   )
 }
 
-/* ══════════════════════════════════════════════════════
-   ABOUT
-══════════════════════════════════════════════════════ */
+
 function About() {
   const { t } = useTranslation()
   const ref = useRef<HTMLElement>(null)
@@ -276,9 +274,6 @@ function Projects() {
   )
 }
 
-/* ══════════════════════════════════════════════════════
-   CONTACT
-══════════════════════════════════════════════════════ */
 function Contact() {
   const { t } = useTranslation()
   const ref = useRef<HTMLElement>(null)
@@ -345,7 +340,6 @@ function Contact() {
   )
 }
 
-/* ── Footer ─────────────────────────────────────────── */
 function Footer() {
   return (
     <footer className="py-10 border-t border-border">
@@ -362,7 +356,6 @@ function Footer() {
   )
 }
 
-/* ── HOME PAGE ──────────────────────────────────────── */
 export default function HomePage() {
   return (
     <PortfolioLayout>

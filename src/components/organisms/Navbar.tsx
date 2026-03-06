@@ -28,6 +28,13 @@ export default function Navbar() {
       ]
     : []
 
+  const handleAnchorClick = (href: string) => {
+    const element = document.querySelector(href)
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
   return (
     <>
       <header className={cn(
@@ -47,6 +54,7 @@ export default function Navbar() {
               {anchorLinks.map(l => (
                 <li key={l.href}>
                   <a href={l.href}
+                    onClick={(e) => { e.preventDefault(); handleAnchorClick(l.href) }}
                     className="px-4 py-2 text-sm font-medium text-tx-2 hover:text-tx transition-colors rounded-xl hover:bg-surface-2">
                     {l.label}
                   </a>
@@ -123,7 +131,7 @@ export default function Navbar() {
         open ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
       )}>
         {anchorLinks.map(l => (
-          <a key={l.href} href={l.href} onClick={() => setOpen(false)}
+          <a key={l.href} href={l.href} onClick={(e) => { e.preventDefault(); handleAnchorClick(l.href); setOpen(false) }}
             className="font-display text-5xl font-bold text-tx hover:text-accent transition-colors">
             {l.label}
           </a>
