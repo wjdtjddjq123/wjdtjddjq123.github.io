@@ -8,15 +8,15 @@ export const projects = [
 ]
 
 export const skillGroups = [
-  { category:'Design Tools', icon:'✦', skills:[{ name:'Figma', pct:95 },{ name:'Adobe XD', pct:85 },{ name:'Illustrator', pct:80 },{ name:'Photoshop', pct:70 }] },
-  { category:'Frontend',     icon:'◈', skills:[{ name:'HTML / CSS', pct:97 },{ name:'JavaScript', pct:88 },{ name:'JSP', pct:72 },{ name:'PHP', pct:68 },{ name:'Java', pct:65 }] },
-  { category:'Tools & Infra',icon:'◉', skills:[{ name:'VS Code', pct:95 },{ name:'Eclipse', pct:85 },{ name:'Apache Tomcat', pct:75 },{ name:'PostgreSQL', pct:70 },{ name:'ArcGIS / OpenLayers', pct:65 }] },
+  { category:'Design Tools', icon:'✦', skills:[{ name:'Figma', pct:95 },{ name:'Adobe XD', pct:85 },{ name:'Illustrator', pct:80 },{ name:'Photoshop', pct:70 },{ name:'Premiere Pro', pct:40 }] },
+  { category:'Frontend',     icon:'◈', skills:[{ name:'HTML / CSS', pct:97 },{ name:'JavaScript', pct:88 },{ name:'JSP', pct:72 },{ name:'Java', pct:30 }] },
+  { category:'Tools & Infra',icon:'◉', skills:[{ name:'VS Code', pct:95 },{ name:'Eclipse', pct:85 },{ name:'Apache Tomcat', pct:50 },{ name:'PostgreSQL', pct:30 },{ name:'ArcGIS / OpenLayers', pct:20 }] },
 ]
 
 export const experiences = [
-  { company:'㈜한국오픈솔루션', role:'주임', period:'24.12 — 25.12', desc:'제품 사이트, 사내 표준 템플릿, 두산에너빌리티 게스트하우스·CMMS 등 다수 프로젝트 UIUX 설계 및 개발 담당.' },
+  { company:'㈜한국오픈솔루션', role:'사원', period:'24.12 — 25.12', desc:'제품 사이트, 사내 표준 템플릿, 두산에너빌리티 게스트하우스·CMMS 등 다수 프로젝트 UIUX 설계 및 개발 담당.' },
   { company:'아이티에스노아',   role:'주임', period:'24.03 — 24.07', desc:'도시주택보증공사 공공 GIS 시스템 UI/UX 개선 및 웹사이트 유지보수·개발.' },
-  { company:'㈜태양',          role:'주임', period:'22.06 — 23.01', desc:'사내 사이트 유지보수 및 온/오프라인 광고 디자인.' },
+  { company:'㈜태양',          role:'대리', period:'22.06 — 23.01', desc:'사내 사이트 유지보수 및 온/오프라인 광고 디자인.' },
   { company:'㈜부곤에프앤비',  role:'대리', period:'21.02 — 21.11', desc:'사내 사이트 제작 및 온/오프라인 광고 디자인.' },
   { company:'㈜동우메디칼',    role:'사원', period:'19.07 — 20.02', desc:'자사 웹사이트 디자인 및 프론트엔드 개발.' },
 ]
