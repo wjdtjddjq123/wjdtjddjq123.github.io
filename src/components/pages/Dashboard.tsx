@@ -131,7 +131,7 @@ export default function DashboardPage() {
 
       <div className="transition-all duration-300" style={{ marginLeft: col?68:248 }}>
         {/* Top bar */}
-        <header className="h-16 border-b border-border bg-surface/80 backdrop-blur sticky top-0 z-30 flex items-center px-6 gap-4">
+        <header className="h-16 border-b border-border bg-surface/80 backdrop-blur sticky top-0 z-30 flex items-center px-6 gap-4 position-fixed w-full">
           <div className="flex-1">
             <SearchBar value={q} onChange={setQ} onClear={()=>setQ('')} placeholder="Search…" className="max-w-sm"/>
           </div>
@@ -144,7 +144,7 @@ export default function DashboardPage() {
           </div>
         </header>
 
-        <main className="p-6 space-y-6">
+        <main className="p-6 space-y-6 mt-16">
           {/* Page header */}
           <div className="flex items-center justify-between">
             <div>
