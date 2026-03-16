@@ -26,9 +26,9 @@ const activities = [
   { user:'David',  action:'Commented on issue #201',        time:'3h',  type:'comment' },
 ]
 const table = [
-  { project:'두산에너빌리티 게스트하우스', status:'active',    tech:['JSP','Java'],     pct:78, due:'Jun 12' },
+  { project:'두산에너빌리티 게스트하우스', status:'completed',    tech:['JSP','Java'],     pct:78, due:'Jun 12' },
   { project:'사내 웹 표준 템플릿',         status:'completed', tech:['HTML','CSS'],     pct:100,due:'May 5'  },
-  { project:'플랜트펄스 제품사이트',       status:'review',    tech:['JavaScript'],     pct:90, due:'Mar 30' },
+  { project:'플랜트펄스 제품사이트',       status:'completed',    tech:['JavaScript'],     pct:90, due:'Mar 30' },
   { project:'우리동네재생정보',            status:'paused',    tech:['ArcGIS','JS'],    pct:45, due:'Apr 20' },
   { project:'도시종합정보체계',            status:'completed', tech:['JSP','Java'],     pct:100,due:'Jul 10' },
 ]
