@@ -100,7 +100,7 @@ function About() {
   },[])
 
   const stats = [
-    { v:6, suf:'+', label:t('about.exp') },
+    { v:4, suf:'+', label:t('about.exp') },
     { v:9,  suf:'',  label:t('about.proj') },
     { v:6,  suf:'',  label:t('about.clients') },
   ]
