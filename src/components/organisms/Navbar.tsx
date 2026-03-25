@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { Moon, Sun, Globe, Menu, X, LayoutDashboard, Palette } from 'lucide-react'
+import { Moon, Sun, Globe, Menu, X, LayoutDashboard, Palette, Brush } from 'lucide-react'
 import { useTheme } from '@/contexts/ThemeContext'
 import { cn } from '@/utils/cn'
 
@@ -91,6 +91,18 @@ export default function Navbar() {
               </span>
             </button>
 
+            {/* Design Work */}
+            <Link to="/design-work"
+              className={cn(
+                'hidden md:inline-flex items-center gap-1.5 px-4 py-2 text-sm font-medium rounded-xl border transition-all',
+                loc.pathname === '/design-work'
+                  ? 'border-accent text-accent bg-accent/10'
+                  : 'border-border text-tx-2 hover:border-accent hover:text-tx'
+              )}>
+              <Brush size={14} />
+              Design Work
+            </Link>
+
             {/* Design System */}
             <Link to="/design-system"
               className={cn(
@@ -137,6 +149,10 @@ export default function Navbar() {
           </a>
         ))}
         <div className="flex gap-3 mt-6">
+          <Link to="/design-work" onClick={() => setOpen(false)}
+            className="flex items-center gap-2 px-5 py-3 rounded-2xl border border-border text-tx-2 font-medium hover:border-accent hover:text-accent transition-all">
+            <Brush size={16} /> Design Work
+          </Link>
           <Link to="/design-system" onClick={() => setOpen(false)}
             className="flex items-center gap-2 px-5 py-3 rounded-2xl border border-border text-tx-2 font-medium hover:border-accent hover:text-accent transition-all">
             <Palette size={16} /> Design System

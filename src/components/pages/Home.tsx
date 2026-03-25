@@ -268,10 +268,11 @@ function Projects() {
                     <span key={tg} className="px-2.5 py-0.5 text-xs font-mono rounded-full border border-border text-tx-3 bg-surface-2">{tg}</span>
                   ))}
                 </div>
-                <div className="flex items-center gap-2 pt-4 border-t border-border">
-                  <span className="text-xs text-tx-3 flex-1">{p.client}</span>
-                  <Button variant="ghost" size="xs" iconRight={<ArrowUpRight size={13}/>}>{t('projects.case')}</Button>
-                </div>
+               <a href={p.link} target="_blank" rel="noopener noreferrer">
+                <Button variant="ghost" size="xs" iconRight={<ArrowUpRight size={13}/>}>
+                  {t('projects.case')}
+                </Button>
+              </a>
               </div>
             </div>
           ))}
