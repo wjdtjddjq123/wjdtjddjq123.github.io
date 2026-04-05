@@ -40,8 +40,8 @@ export const designWorks: DesignWork[] = [
     mediaUrl: '/public/img/fitstep.jpg',
     images: [
       '/public/img/fitstep.jpg',
-      '/public/img/fitstep+2.jpg',
-      '/public/img/fitstep+3.jpg',
+      '/public/img/fitstep2.jpg',
+      '/public/img/fitstep3.jpg',
     ],
     featured: true,
   },
@@ -56,9 +56,9 @@ export const designWorks: DesignWork[] = [
     period: '2022.06 ~ 2022.07',
     color: 'from-orange-500/20 to-rose-500/20',
     mediaType: 'image',
-    mediaUrl: '/public/img/safefy+1.png',
+    mediaUrl: '/public/img/safefy1.png',
     images: [
-      '/public/img/safefy+2.jpg',
+      '/public/img/safefy2.jpg',
     ],
 
     featured: true,
