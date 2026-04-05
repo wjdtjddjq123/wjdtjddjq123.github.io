@@ -37,11 +37,11 @@ export const designWorks: DesignWork[] = [
     period: '2022.07 ~ 2022.08',
     color: 'from-orange-500/20 to-rose-500/20',
     mediaType: 'image',
-    mediaUrl: '/public/img/fitstep.jpg',
+    mediaUrl: 'img/fitstep.jpg',
     images: [
-      '/public/img/fitstep.jpg',
-      '/public/img/fitstep2.jpg',
-      '/public/img/fitstep3.jpg',
+      'img/fitstep.jpg',
+      'img/fitstep2.jpg',
+      'img/fitstep3.jpg',
     ],
     featured: true,
   },
@@ -56,9 +56,9 @@ export const designWorks: DesignWork[] = [
     period: '2022.06 ~ 2022.07',
     color: 'from-orange-500/20 to-rose-500/20',
     mediaType: 'image',
-    mediaUrl: '/public/img/safefy1.png',
+    mediaUrl: 'img/safefy1.png',
     images: [
-      '/public/img/safefy2.jpg',
+      'img/safefy2.jpg',
     ],
 
     featured: true,
@@ -74,9 +74,9 @@ export const designWorks: DesignWork[] = [
     period: '2020.03 ~ 2020.03',
     color: 'from-violet-500/20 to-purple-500/20',
     mediaType: 'image',
-    mediaUrl: '/public/img/deagu_lions.png',
+    mediaUrl: 'img/deagu_lions.png',
     images: [
-      '/public/img/deagu_lions.png',
+      'img/deagu_lions.png',
       '',
     ],
     featured: true,
@@ -92,7 +92,7 @@ export const designWorks: DesignWork[] = [
     period: '2020.04 ~ 2020.04',
     color: 'from-amber-500/20 to-yellow-500/20',
     mediaType: 'image',
-    mediaUrl: '/public/img/deagu_nochong.png',
+    mediaUrl: 'img/deagu_nochong.png',
   },
  
   {
