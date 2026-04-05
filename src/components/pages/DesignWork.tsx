@@ -20,6 +20,14 @@ const CAT_COLOR: Record<string, string> = {
 /* ─────────────────────────────────────────────
    MEDIA PLACEHOLDER (실제 이미지 없을 때)
 ───────────────────────────────────────────── */
+
+
+function getYoutubeThumbnail(url: string) {
+  const match = url.match(/(?:embed\/|v=|youtu\.be\/)([^&]+)/)
+  return match ? `https://img.youtube.com/vi/${match[1]}/hqdefault.jpg` : ''
+}
+
+/* ───────────────────────────── */
 function MediaPlaceholder({ work }: { work: DesignWork }) {
   return (
     <div className={cn(
@@ -30,18 +38,19 @@ function MediaPlaceholder({ work }: { work: DesignWork }) {
         ? <Play size={32} className="text-white/60" />
         : <ImageIcon size={32} className="text-white/60" />
       }
-      <span className="text-xs font-mono text-white/40">{work.mediaType === 'video' ? 'VIDEO' : 'IMAGE'}</span>
     </div>
   )
 }
 
+
+
 /* ─────────────────────────────────────────────
    CARD THUMBNAIL HEADER
-───────────────────────────────────────────── */
+───────────────────────────────────────────── 
 function CardThumb({ work }: { work: DesignWork }) {
   return (
     <div className={cn('relative h-44 bg-gradient-to-br overflow-hidden', work.color)}>
-      {/* 실제 이미지가 있으면 보여주고, 없으면 placeholder */}
+      {/* 실제 이미지가 있으면 보여주고, 없으면 placeholder 
       <img
         src={work.mediaUrl}
         alt={work.title}
@@ -49,7 +58,7 @@ function CardThumb({ work }: { work: DesignWork }) {
         onLoad={e => { (e.target as HTMLImageElement).style.opacity = '1' }}
         onError={e => { (e.target as HTMLImageElement).style.display = 'none' }}
       />
-      {/* 비디오 플레이 오버레이 */}
+      {/* 비디오 플레이 오버레이 
       {work.mediaType === 'video' && (
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center">
@@ -57,7 +66,7 @@ function CardThumb({ work }: { work: DesignWork }) {
           </div>
         </div>
       )}
-      {/* 이미지 수 뱃지 */}
+      {/* 이미지 수 뱃지 
       {work.images && work.images.length > 1 && (
         <div className="absolute top-3 right-3 px-2 py-0.5 rounded-full bg-black/40 backdrop-blur-sm text-white text-xs font-mono">
           1 / {work.images.length}
@@ -65,8 +74,39 @@ function CardThumb({ work }: { work: DesignWork }) {
       )}
     </div>
   )
-}
+}*/
+/* ─────────────────────────────
+   🔥 썸네일 처리 개선
+───────────────────────────── */
+function CardThumb({ work }: { work: DesignWork }) {
+  const isVideo = work.mediaType === 'video'
 
+  const thumbSrc = isVideo
+    ? getYoutubeThumbnail(work.mediaUrl)
+    : work.mediaUrl
+
+  return (
+    <div className={cn('relative h-44 bg-gradient-to-br overflow-hidden', work.color)}>
+      {thumbSrc ? (
+        <img
+          src={thumbSrc}
+          alt={work.title}
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+        />
+      ) : (
+        <MediaPlaceholder work={work} />
+      )}
+
+      {isVideo && (
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center">
+            <Play size={20} className="text-white ml-0.5" fill="white" />
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}
 /* ─────────────────────────────────────────────
    MODAL
 ───────────────────────────────────────────── */
