@@ -10,7 +10,7 @@ export default {
       fontFamily: {
         display: ['"Bebas Neue"', 'cursive'],
         body:    ['"Outfit"', 'sans-serif'],
-        mono:    ['"JetBrains Mono"', 'monospace'],
+        mono:    ['"pretendard"', 'monospace'],
       },
 
       // ── Semantic color tokens via CSS vars ──────────────

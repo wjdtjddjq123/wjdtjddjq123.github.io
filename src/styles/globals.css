@@ -128,7 +128,7 @@
 
   /* Section label */
   .sec-label {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'pretendard', monospace;
     font-size: .75rem;
     letter-spacing: .14em;
     text-transform: uppercase;
@@ -181,9 +181,9 @@
   .t-body-lg { font-size: 1.125rem; line-height: 1.75; }
   .t-body    { font-size: 1rem;    line-height: 1.65; }
   .t-body-sm { font-size: .875rem; line-height: 1.6; }
-  .t-label   { font-family: 'JetBrains Mono', monospace; font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; }
+  .t-label   { font-family: 'pretendard', monospace; font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; }
   .t-caption { font-size: .625rem; letter-spacing: .06em; }
-  .t-code    { font-family: 'JetBrains Mono', monospace; font-size: .875rem; }
+  .t-code    { font-family: 'pretendard', monospace; font-size: .875rem; }
 
   .scrollbar-none { scrollbar-width: none; -ms-overflow-style: none; }
   .scrollbar-none::-webkit-scrollbar { display: none; }
