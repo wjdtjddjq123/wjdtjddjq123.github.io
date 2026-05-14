@@ -59,7 +59,7 @@ export default function DesignSystemPage() {
     { group:'Status',  items:[{ n:'Success',v:'#22c880'},{ n:'Warning',v:'#f59e0b'},{ n:'Error',v:'#ef4444'},{ n:'Info',v:'#3b82f6'}] },
   ]
   const typeScale = [
-    { name:'Display',  cls:'t-display', sample:'Display', note:'Bebas Neue, clamp(5rem,14vw,10rem)' },
+    { name:'Display',  cls:'t-display', sample:'Display', note:'Pretendard, clamp(5rem,14vw,10rem)' },
     { name:'H1',       cls:'t-h1',      sample:'Heading 1', note:'700, clamp(2.8rem,7vw,5.5rem)' },
     { name:'H2',       cls:'t-h2',      sample:'Heading 2', note:'700, clamp(2rem,5vw,3.5rem)' },
     { name:'H3',       cls:'t-h3',      sample:'Heading 3', note:'700, clamp(1.4rem,3vw,2rem)' },
@@ -67,9 +67,9 @@ export default function DesignSystemPage() {
     { name:'Body LG',  cls:'t-body-lg', sample:'The quick brown fox jumps over the lazy dog', note:'400, 1.125rem' },
     { name:'Body',     cls:'t-body',    sample:'The quick brown fox jumps over the lazy dog', note:'400, 1rem' },
     { name:'Body SM',  cls:'t-body-sm', sample:'The quick brown fox jumps over the lazy dog', note:'400, 0.875rem' },
-    { name:'Label',    cls:'t-label',   sample:'SECTION LABEL', note:'Mono, 0.75rem, tracking' },
+    { name:'Label',    cls:'t-label',   sample:'SECTION LABEL', note:'Pretendard, 0.75rem, tracking' },
     { name:'Caption',  cls:'t-caption', sample:'Fine print caption text', note:'0.625rem' },
-    { name:'Code',     cls:'t-code',    sample:'const hello = "world"', note:'JetBrains Mono, 0.875rem' },
+    { name:'Code',     cls:'t-code',    sample:'const hello = "world"', note:'Pretendard, 0.875rem' },
   ]
   const spacing = [
     { tok:'xs',  px:'4px'  }, { tok:'sm',  px:'8px'  }, { tok:'md',  px:'16px' },
@@ -136,7 +136,8 @@ export default function DesignSystemPage() {
 
         {/* TYPOGRAPHY */}
         <Section id="typography" title="Typography Scale">
-          <p className="t-body text-tx-2 mb-8 max-w-2xl">Bebas Neue (display) · Outfit (body) · JetBrains Mono (code)</p>
+          {/* ↓ 폰트 설명 Pretendard 단일 패밀리로 변경 */}
+          <p className="t-body text-tx-2 mb-8 max-w-2xl">Pretendard (display · body · code)</p>
           <div className="rounded-2xl border border-border bg-surface overflow-hidden">
             {typeScale.map((t,i)=>(
               <div key={t.name} className={cn('flex items-baseline gap-6 px-6 py-5', i<typeScale.length-1&&'border-b border-border')}>
