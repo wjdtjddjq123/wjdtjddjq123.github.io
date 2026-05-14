@@ -8,8 +8,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        display: ['"Bebas Neue"', 'cursive'],
-        body:    ['"Outfit"', 'sans-serif'],
+        display: ['"pretendard"', 'cursive'],
+        body:    ['"pretendard"', 'sans-serif'],
         mono:    ['"pretendard"', 'monospace'],
       },
 
