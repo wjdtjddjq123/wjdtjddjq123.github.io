@@ -22,6 +22,8 @@ export interface DesignWork {
   mediaUrl: string
   /** 갤러리 이미지가 여러 장일 경우 추가 (선택) */
   images?: string[]
+  /** 외부 디자인 원본 링크 (선택) */
+  sourceUrl?: string
   featured?: boolean
 }
 
@@ -194,5 +196,24 @@ export const designWorks: DesignWork[] = [
       'img/doosan_mobile.png',
       '',
     ],
+  },
+  {
+    id: 11,
+    title: '요양병원 상담플러스 UI/UX Design',
+    category: 'UI/UX',
+    desc: '요양병원 입원 상담 업무를 위한 상담플러스 화면을 설계했습니다. 다회차 상담 기록, 녹취 업로드, AI 상담요약과 상담전문을 한 화면에서 확인할 수 있도록 정보 구조와 작업 흐름을 개선했습니다.',
+    tags: ['Figma', 'UI/UX', 'Healthcare', 'Admin System', 'Responsive'],
+    year: '2026',
+    client: '요양병원 운영 플랫폼',
+    period: '2026',
+    color: 'from-lime-500/20 to-emerald-500/20',
+    mediaType: 'image',
+    mediaUrl: 'img/careus-counsel-analysis.png',
+    images: [
+      'img/careus-counsel-analysis.png',
+      'img/careus-counsel-upload.png',
+    ],
+    sourceUrl: 'https://www.figma.com/design/P5f7XuoBzkyrxVFxrkoXeN/%EC%9A%94%EC%96%91%EB%B3%91%EC%9B%90-%EC%9C%A4%EA%B3%BC%EC%9E%A5?node-id=183-11433',
+    featured: true,
   },
 ]

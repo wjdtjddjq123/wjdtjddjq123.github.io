@@ -153,6 +153,18 @@ function Modal({ work, onClose }: { work: DesignWork; onClose: () => void }) {
           <span className="font-body font-bold text-tx flex-1 truncate">{work.title}</span>
           <span className="t-label text-tx-3 hidden sm:block">{work.client}</span>
           <span className="t-label text-tx-3 hidden sm:block">{work.period}</span>
+          {work.sourceUrl && (
+            <a
+              href={work.sourceUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium text-accent hover:bg-accent/10 transition-colors"
+              aria-label={`${work.title} Figma 원본 열기`}
+            >
+              <ExternalLink size={14} />
+              <span className="hidden sm:inline">Figma</span>
+            </a>
+          )}
           <button
             type="button"
             onClick={onClose}
