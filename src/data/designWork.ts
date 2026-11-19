@@ -164,7 +164,7 @@ export const designWorks: DesignWork[] = [
     period: '2026',
     color: 'from-emerald-500/20 to-teal-500/20',
     mediaType: 'video',
-    mediaUrl: 'https://www.youtube.com/embed/1Dto9CjJ9Hw',
+    mediaUrl: 'https://www.youtube.com/embed/NmHurn1h2oo',
   },
   {
     id: 15,
