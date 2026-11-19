@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import { ArrowLeft, X, ChevronLeft, ChevronRight, ExternalLink, Play, Image as ImageIcon } from 'lucide-react'
 import { Button, Badge, Divider } from '@/components/atoms'
 import { cn } from '@/utils/cn'
@@ -80,6 +80,7 @@ function CardThumb({ work }: { work: DesignWork }) {
 ───────────────────────────── */
 function CardThumb({ work }: { work: DesignWork }) {
   const isVideo = work.mediaType === 'video'
+  const isPdf = work.mediaType === 'pdf'
 
   const thumbSrc = isVideo
     ? getYoutubeThumbnail(work.mediaUrl)
@@ -87,7 +88,20 @@ function CardThumb({ work }: { work: DesignWork }) {
 
   return (
     <div className={cn('relative h-44 bg-gradient-to-br overflow-hidden', work.color)}>
-      {thumbSrc ? (
+      {isPdf ? (
+        <div className="w-full h-full flex flex-col items-center justify-center gap-3 bg-gradient-to-br from-sky-500/20 to-indigo-500/20">
+          <ImageIcon size={36} className="text-accent" />
+          <span className="rounded-full border border-accent/30 bg-accent/10 px-3 py-1 text-xs font-mono text-accent">PDF DESIGN</span>
+        </div>
+      ) : isVideo && !thumbSrc ? (
+        <video
+          src={work.mediaUrl}
+          muted
+          playsInline
+          preload="metadata"
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+        />
+      ) : thumbSrc ? (
         <img
           src={thumbSrc}
           alt={work.title}
@@ -113,7 +127,7 @@ function CardThumb({ work }: { work: DesignWork }) {
 function Modal({ work, onClose }: { work: DesignWork; onClose: () => void }) {
   const [imgIdx, setImgIdx] = useState(0)
   const overlayRef = useRef<HTMLDivElement>(null)
-  const images = work.images ?? [work.mediaUrl]
+  const images = Array.from(new Set([work.mediaUrl, ...(work.images ?? [])])).filter(Boolean)
 
   // ESC 닫기
   useEffect(() => {
@@ -177,7 +191,13 @@ function Modal({ work, onClose }: { work: DesignWork; onClose: () => void }) {
         {/* Media area */}
         <div className="flex-1 overflow-y-auto">
           <div className="relative bg-surface-2 min-h-64" style={{ aspectRatio: '16/9' }}>
-            {work.mediaType === 'video' ? (
+            {work.mediaType === 'pdf' ? (
+              <iframe
+                src={work.mediaUrl}
+                title={work.title}
+                className="w-full h-full min-h-[70vh] border-0 bg-white"
+              />
+            ) : work.mediaType === 'video' ? (
               /* ── VIDEO ── */
               work.mediaUrl.includes('youtube') || work.mediaUrl.includes('youtu.be') ? (
                 <iframe
@@ -306,6 +326,23 @@ function WorkCard({ work, onClick }: { work: DesignWork; onClick: () => void }) 
 export default function DesignWorkPage() {
   const [filter, setFilter] = useState<DesignCategory>('All')
   const [selected, setSelected] = useState<DesignWork | null>(null)
+  const [searchParams, setSearchParams] = useSearchParams()
+
+  useEffect(() => {
+    const workId = Number(searchParams.get('work'))
+    if (!workId) return
+    setSelected(designWorks.find(work => work.id === workId) ?? null)
+  }, [searchParams])
+
+  const openWork = (work: DesignWork) => {
+    setSelected(work)
+    setSearchParams({ work:String(work.id) })
+  }
+
+  const closeWork = () => {
+    setSelected(null)
+    setSearchParams({}, { replace:true })
+  }
 
   const list = filter === 'All'
     ? designWorks
@@ -321,7 +358,7 @@ export default function DesignWorkPage() {
   return (
     <>
       {/* ── Modal ── */}
-      {selected && <Modal work={selected} onClose={() => setSelected(null)} />}
+      {selected && <Modal work={selected} onClose={closeWork} />}
 
       <div className="min-h-screen bg-bg">
         {/* ── Header ── */}
@@ -377,7 +414,7 @@ export default function DesignWorkPage() {
           {/* ── Grid ── */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
             {list.map(work => (
-              <WorkCard key={work.id} work={work} onClick={() => setSelected(work)} />
+              <WorkCard key={work.id} work={work} onClick={() => openWork(work)} />
             ))}
           </div>
 

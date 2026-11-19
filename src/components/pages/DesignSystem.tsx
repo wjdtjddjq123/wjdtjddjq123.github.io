@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { Link, Navigate, useParams } from 'react-router-dom'
 import { ArrowLeft, Copy, Check } from 'lucide-react'
 import { Button, Badge, Tag, Chip, Input, Textarea, Avatar, Divider, Loader } from '@/components/atoms'
 import { Tabs, Tooltip, Dropdown } from '@/components/molecules'
@@ -52,6 +52,23 @@ export default function DesignSystemPage() {
   const [tab2, setTab2] = useState('a')
   const [tab3, setTab3] = useState('a')
   const [drop, setDrop] = useState('')
+  const { section } = useParams()
+  const sections = ['colors','typography','spacing','buttons','badges','inputs','avatars','tabs','cards','loaders'] as const
+
+  useEffect(() => {
+    if (!section) {
+      window.scrollTo({ top:0 })
+      return
+    }
+
+    requestAnimationFrame(() => {
+      document.getElementById(section)?.scrollIntoView({ behavior:'smooth', block:'start' })
+    })
+  }, [section])
+
+  if (section && !sections.includes(section as typeof sections[number])) {
+    return <Navigate to="/design-system" replace />
+  }
 
   const colors = [
     { group:'Primary', items:[{ n:'50',  v:'#eef3ff'},{ n:'100',v:'#dce7ff'},{ n:'300',v:'#90adff'},{ n:'500',v:'#5B8EFF'},{ n:'700',v:'#2c42d8'},{ n:'900',v:'#273489'}] },
@@ -89,8 +106,11 @@ export default function DesignSystemPage() {
           <span className="font-body font-bold text-tx">Design System</span>
           <Badge variant="accent" className="ml-1">v2.0</Badge>
           <div className="hidden lg:flex items-center gap-1 ml-auto">
-            {['colors','typography','spacing','buttons','badges','inputs','avatars','tabs','cards','loaders'].map(s=>(
-              <a key={s} href={`#${s}`} className="px-3 py-1.5 text-xs font-medium text-tx-2 hover:text-accent hover:bg-accent/5 rounded-lg transition-all capitalize">{s}</a>
+            {sections.map(s=>(
+              <Link key={s} to={`/design-system/${s}`} className={cn(
+                'px-3 py-1.5 text-xs font-medium hover:text-accent hover:bg-accent/5 rounded-lg transition-all capitalize',
+                section===s ? 'bg-accent/10 text-accent' : 'text-tx-2',
+              )}>{s}</Link>
             ))}
           </div>
         </div>
@@ -114,7 +134,7 @@ export default function DesignSystemPage() {
               { n:'--surface', v:'Dark: hsl(222 44% 9%) | Light: hsl(0 0% 100%)',    p:'#0E1628' },
               { n:'--border',  v:'Dark: hsl(222 30% 18%) | Light: hsl(220 16% 90%)', p:'#1E2A44' },
               { n:'--tx',      v:'Dark: hsl(214 30% 95%) | Light: hsl(222 47% 11%)', p:'#EDF1FC' },
-              { n:'Accent',    v:'Fixed: #5B8EFF (vivid blue-indigo)',                p:'#5B8EFF' },
+              { n:'Accent',    v:'Dynamic palette color',                             p:'hsl(var(--accent))' },
             ].map(t=>(
               <div key={t.n} className="flex items-center gap-4 px-5 py-3.5 border-b border-border last:border-0">
                 <div className="w-10 h-10 rounded-lg border border-border shrink-0" style={{background:t.p}}/>

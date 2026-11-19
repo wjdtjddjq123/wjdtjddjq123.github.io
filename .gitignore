@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.vite/
+.idea/
+*.iml
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
+Thumbs.db
+
+public/video/dmr 와처_1.mp4
+public/video/상담플러스_v3_1_2.mp4

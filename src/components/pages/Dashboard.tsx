@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Navigate, useParams } from 'react-router-dom'
 import {
   LayoutDashboard, BarChart2, FolderOpen, MessageSquare,
   Settings, Home, Bell, TrendingUp, TrendingDown,
@@ -34,10 +34,10 @@ const table = [
 ]
 const navItems = [
   { id:'overview',  label:'Overview',  Icon:LayoutDashboard, href:'/dashboard' },
-  { id:'analytics', label:'Analytics', Icon:BarChart2,        href:'#' },
-  { id:'projects',  label:'Projects',  Icon:FolderOpen,       href:'#', badge:3 },
-  { id:'messages',  label:'Messages',  Icon:MessageSquare,    href:'#', badge:4 },
-  { id:'settings',  label:'Settings',  Icon:Settings,         href:'#' },
+  { id:'analytics', label:'Analytics', Icon:BarChart2,        href:'/dashboard/analytics' },
+  { id:'projects',  label:'Projects',  Icon:FolderOpen,       href:'/dashboard/projects', badge:3 },
+  { id:'messages',  label:'Messages',  Icon:MessageSquare,    href:'/dashboard/messages', badge:4 },
+  { id:'settings',  label:'Settings',  Icon:Settings,         href:'/dashboard/settings' },
 ]
 const ActivityIcon: Record<string,{I:any;c:string}> = {
   deploy:  { I:Rocket,        c:'text-success-700 bg-success-50' },
@@ -51,7 +51,7 @@ const StatusV: Record<string, 'accent'|'success'|'warning'|'info'|'default'> = {
 }
 
 /* ── Sidebar ────────────────────────────────────────── */
-function Sidebar({ col, onCol }: { col:boolean; onCol:(v:boolean)=>void }) {
+function Sidebar({ col, onCol, activeId }: { col:boolean; onCol:(v:boolean)=>void; activeId:string }) {
   return (
     <aside className={cn('fixed left-0 top-0 h-full z-40 flex flex-col bg-surface border-r border-border transition-all duration-300', col?'w-[68px]':'w-[248px]')}>
       {/* Logo */}
@@ -69,7 +69,7 @@ function Sidebar({ col, onCol }: { col:boolean; onCol:(v:boolean)=>void }) {
           <Link key={item.id} to={item.href}
             className={cn('flex items-center gap-3 rounded-xl px-3 py-2.5 transition-all group relative',
               col?'justify-center':'',
-              item.id==='overview'?'bg-accent/10 text-accent':'text-tx-2 hover:bg-surface-2 hover:text-tx')}>
+              item.id===activeId?'bg-accent/10 text-accent':'text-tx-2 hover:bg-surface-2 hover:text-tx')}>
             <item.Icon size={18} className="shrink-0"/>
             {!col && <span className="text-sm font-medium">{item.label}</span>}
             {!col && item.badge && <span className="ml-auto text-xs bg-accent text-white rounded-full w-5 h-5 flex items-center justify-center font-mono">{item.badge}</span>}
@@ -108,7 +108,7 @@ function ChartWidget({ title, sub }: { title:string; sub?:string }) {
       </div>
       <div className="flex items-end gap-1.5 h-32">
         {bars.map((h,i)=>(
-          <div key={i} className="flex-1 rounded-t-sm transition-all hover:opacity-100" style={{ height:`${h}%`, background:'linear-gradient(to top, #5B8EFF, rgba(91,142,255,.3))', opacity:.5+i/bars.length*.5 }}/>
+          <div key={i} className="flex-1 rounded-t-sm bg-gradient-to-t from-accent to-accent/30 transition-all hover:opacity-100" style={{ height:`${h}%`, opacity:.5+i/bars.length*.5 }}/>
         ))}
       </div>
       <div className="flex justify-between mt-2">
@@ -121,13 +121,53 @@ function ChartWidget({ title, sub }: { title:string; sub?:string }) {
 }
 
 /* ── Dashboard Page ─────────────────────────────────── */
+type DashboardSection = 'overview' | 'analytics' | 'projects' | 'messages' | 'settings'
+
+const sectionCopy: Record<Exclude<DashboardSection, 'overview'>, { title:string; description:string; items:string[] }> = {
+  analytics: { title:'Analytics', description:'Monitor traffic, engagement, and conversion performance.', items:['Page views','Unique visitors','Conversion rate'] },
+  projects: { title:'Projects', description:'Review active projects and their current delivery status.', items:['In progress','Under review','Completed'] },
+  messages: { title:'Messages', description:'Keep track of project discussions and unread updates.', items:['Unread','Mentions','Archived'] },
+  settings: { title:'Settings', description:'Manage workspace preferences and account configuration.', items:['Profile','Notifications','Security'] },
+}
+
+function SectionContent({ section }: { section:Exclude<DashboardSection, 'overview'> }) {
+  const content = sectionCopy[section]
+  return (
+    <section className="space-y-6" aria-labelledby="dashboard-section-title">
+      <div>
+        <p className="sec-label mb-1 text-accent">Workspace</p>
+        <h1 id="dashboard-section-title" className="font-body font-bold text-3xl text-tx">{content.title}</h1>
+        <p className="mt-2 text-sm text-tx-2">{content.description}</p>
+      </div>
+      <div className="grid gap-4 md:grid-cols-3">
+        {content.items.map((item, index) => (
+          <article key={item} className="rounded-2xl border border-border bg-surface p-6">
+            <p className="t-label text-tx-3">{content.title}</p>
+            <h2 className="mt-2 font-body text-lg font-semibold text-tx">{item}</h2>
+            <p className="mt-4 font-mono text-3xl font-bold text-accent">{[24, 8, 12][index]}</p>
+          </article>
+        ))}
+      </div>
+      <div className="rounded-2xl border border-dashed border-border-2 bg-surface p-8 text-center">
+        <p className="text-sm text-tx-2">{content.title} 상세 기능을 연결할 수 있는 준비된 화면입니다.</p>
+      </div>
+    </section>
+  )
+}
+
 export default function DashboardPage() {
   const [col, setCol] = useState(false)
   const [q, setQ] = useState('')
+  const { section } = useParams()
+  const activeId = (section ?? 'overview') as DashboardSection
+
+  if (!navItems.some(item => item.id === activeId)) {
+    return <Navigate to="/dashboard" replace />
+  }
 
   return (
     <div className="min-h-screen bg-bg">
-      <Sidebar col={col} onCol={setCol}/>
+      <Sidebar col={col} onCol={setCol} activeId={activeId}/>
 
       <div className="transition-all duration-300" style={{ marginLeft: col?68:248 }}>
         {/* Top bar */}
@@ -145,6 +185,8 @@ export default function DashboardPage() {
         </header>
 
         <main className="p-6 space-y-6 mt-16">
+          {activeId !== 'overview' && <SectionContent section={activeId} />}
+          <div className={activeId === 'overview' ? 'contents' : 'hidden'}>
           {/* Page header */}
           <div className="flex items-center justify-between">
             <div>
@@ -238,7 +280,7 @@ export default function DashboardPage() {
                       <td className="px-5 py-3.5">
                         <div className="flex items-center gap-2.5">
                           <div className="w-20 h-1.5 bg-border rounded-full overflow-hidden">
-                            <div className="h-full rounded-full" style={{ width:`${r.pct}%`, background: r.pct===100 ? '#5B8EFF' : 'linear-gradient(90deg,#5B8EFF,rgba(91,142,255,.5))'}}/>
+                            <div className="h-full rounded-full bg-gradient-to-r from-accent to-accent/50" style={{ width:`${r.pct}%` }}/>
                           </div>
                           <span className="text-xs font-mono text-tx-3">{r.pct}%</span>
                         </div>
@@ -270,6 +312,7 @@ export default function DashboardPage() {
               <Loader size="sm"/>
               <Loader size="sm" variant="dots"/>
             </div>
+          </div>
           </div>
         </main>
       </div>

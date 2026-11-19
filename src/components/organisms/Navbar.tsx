@@ -5,12 +5,22 @@ import { Moon, Sun, Globe, Menu, X, LayoutDashboard, Palette, Brush } from 'luci
 import { useTheme } from '@/contexts/ThemeContext'
 import { cn } from '@/utils/cn'
 
+const accentOptions = [
+  { name:'Blue',    accent:'222 100% 68%', accent2:'222 78% 58%', accent3:'215 100% 74%' },
+  { name:'Violet',  accent:'263 83% 65%',  accent2:'263 70% 54%', accent3:'263 92% 76%' },
+  { name:'Emerald', accent:'160 84% 39%',  accent2:'160 84% 32%', accent3:'158 64% 52%' },
+  { name:'Rose',    accent:'347 77% 60%',  accent2:'347 70% 50%', accent3:'350 89% 72%' },
+  { name:'Orange',  accent:'25 95% 53%',   accent2:'21 90% 48%',  accent3:'31 97% 65%' },
+] as const
+
 export default function Navbar() {
   const { t, i18n } = useTranslation()
   const { toggle, isDark } = useTheme()
   const loc = useLocation()
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
+  const [paletteOpen, setPaletteOpen] = useState(false)
+  const [accentName, setAccentName] = useState(() => localStorage.getItem('pf-accent') ?? 'Blue')
   const isHome = loc.pathname === '/' || loc.pathname === ''
 
   useEffect(()=>{
@@ -18,6 +28,15 @@ export default function Navbar() {
     window.addEventListener('scroll', fn, { passive: true })
     return () => window.removeEventListener('scroll', fn)
   }, [])
+
+  useEffect(() => {
+    const selected = accentOptions.find(option => option.name === accentName) ?? accentOptions[0]
+    const root = document.documentElement
+    root.style.setProperty('--accent', selected.accent)
+    root.style.setProperty('--accent-2', selected.accent2)
+    root.style.setProperty('--accent-3', selected.accent3)
+    localStorage.setItem('pf-accent', selected.name)
+  }, [accentName])
 
   const anchorLinks = isHome
     ? [
@@ -73,6 +92,33 @@ export default function Navbar() {
               <Globe size={13} />
               {i18n.language === 'en' ? 'KO' : 'EN'}
             </button>
+
+            {/* Accent color palette */}
+            <div className="relative">
+              <button type="button"
+                onClick={() => setPaletteOpen(value => !value)}
+                className="flex h-8 w-8 items-center justify-center rounded-xl text-tx-2 transition-all hover:bg-surface-2 hover:text-tx"
+                aria-label="Choose main color"
+                aria-expanded={paletteOpen}>
+                <span className="h-3.5 w-3.5 rounded-full bg-accent shadow-glow-sm" />
+              </button>
+              {paletteOpen && (
+                <div className="absolute right-0 top-full mt-2 flex items-center gap-2 rounded-2xl border border-border bg-surface p-3 shadow-xl">
+                  {accentOptions.map(option => (
+                    <button key={option.name} type="button"
+                      onClick={() => { setAccentName(option.name); setPaletteOpen(false) }}
+                      className={cn(
+                        'h-6 w-6 rounded-full border-2 transition-transform hover:scale-110',
+                        accentName === option.name ? 'border-tx scale-110' : 'border-transparent',
+                      )}
+                      style={{ backgroundColor:`hsl(${option.accent})` }}
+                      aria-label={`Use ${option.name} main color`}
+                      title={option.name}
+                    />
+                  ))}
+                </div>
+              )}
+            </div>
 
             {/* Theme toggle */}
             <button type="button" onClick={toggle}

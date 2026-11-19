@@ -7,6 +7,9 @@
    DESIGN TOKENS — CSS VARS (dark default)
 ═══════════════════════════════════════════════ */
 :root {
+  --accent:      222 100% 68%;
+  --accent-2:    222 78% 58%;
+  --accent-3:    215 100% 74%;
   --bg:          222 47% 6%;
   --surface:     222 44% 9%;
   --surface-2:   222 40% 12%;
@@ -62,7 +65,7 @@
   }
 
   ::selection {
-    background: rgba(91, 142, 255, .25);
+    background: hsl(var(--accent) / .25);
   }
 
   ::-webkit-scrollbar { width: 4px; }
@@ -86,7 +89,7 @@
     z-index: 400;
     width: 8px;
     height: 8px;
-    background: #5B8EFF;
+    background: hsl(var(--accent));
     top: 0; left: 0;
     transform: translate(-50%, -50%);
     transition: width .2s, height .2s, opacity .2s;
@@ -98,13 +101,13 @@
     z-index: 399;
     width: 36px;
     height: 36px;
-    border: 1.5px solid rgba(91, 142, 255, .5);
+    border: 1.5px solid hsl(var(--accent) / .5);
     top: 0; left: 0;
     transform: translate(-50%, -50%);
     transition: width .25s, height .25s, border-color .25s;
   }
   body.cursor-hover .cursor-dot  { width: 5px; height: 5px; }
-  body.cursor-hover .cursor-ring { width: 52px; height: 52px; border-color: rgba(91, 142, 255, .8); }
+  body.cursor-hover .cursor-ring { width: 52px; height: 52px; border-color: hsl(var(--accent) / .8); }
 
   /* Layout */
   .wrap {
@@ -131,23 +134,28 @@
     font-size: .75rem;
     letter-spacing: .14em;
     text-transform: uppercase;
-    color: #5B8EFF;
+    color: hsl(var(--accent));
   }
 
   /* Text gradient */
   .text-grad {
-    background: linear-gradient(135deg, hsl(var(--tx)) 0%, #5B8EFF 65%);
+    background: linear-gradient(135deg, hsl(var(--tx)) 0%, hsl(var(--accent)) 65%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+  }
+
+  .hero-grid {
+    background-image: linear-gradient(hsl(var(--accent) / .6) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--accent) / .6) 1px, transparent 1px);
+    background-size: 72px 72px;
   }
 
   /* Skill bar */
   .skill-bar-fill {
     height: 100%;
     border-radius: inherit;
-    background: linear-gradient(90deg, #5B8EFF, rgba(91, 142, 255, .45));
-    box-shadow: 0 0 8px rgba(91, 142, 255, .4);
+    background: linear-gradient(90deg, hsl(var(--accent)), hsl(var(--accent) / .45));
+    box-shadow: 0 0 8px hsl(var(--accent) / .4);
     width: 0;
   }
 
@@ -159,7 +167,7 @@
     inset: 0;
     padding: 1px;
     border-radius: inherit;
-    background: linear-gradient(135deg, rgba(91,142,255,.7), hsl(var(--border)));
+    background: linear-gradient(135deg, hsl(var(--accent) / .7), hsl(var(--border)));
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
@@ -189,6 +197,37 @@
   .text-balance { text-wrap: balance; }
 }
 
+/* Runtime accent utilities keep the palette reactive during Vite HMR. */
+.bg-accent { background-color: hsl(var(--accent)) !important; }
+.bg-accent\/10 { background-color: hsl(var(--accent) / .1) !important; }
+.bg-accent\/20 { background-color: hsl(var(--accent) / .2) !important; }
+.bg-accent\/30 { background-color: hsl(var(--accent) / .3) !important; }
+.bg-accent\/50 { background-color: hsl(var(--accent) / .5) !important; }
+.text-accent { color: hsl(var(--accent)) !important; }
+.border-accent { border-color: hsl(var(--accent)) !important; }
+.border-accent\/20 { border-color: hsl(var(--accent) / .2) !important; }
+.border-accent\/30 { border-color: hsl(var(--accent) / .3) !important; }
+.border-accent\/40 { border-color: hsl(var(--accent) / .4) !important; }
+.ring-accent\/30 { --tw-ring-color: hsl(var(--accent) / .3) !important; }
+.ring-accent\/50 { --tw-ring-color: hsl(var(--accent) / .5) !important; }
+.from-accent { --tw-gradient-from: hsl(var(--accent)) var(--tw-gradient-from-position) !important; --tw-gradient-to: hsl(var(--accent) / 0) var(--tw-gradient-to-position) !important; }
+.to-accent\/30 { --tw-gradient-to: hsl(var(--accent) / .3) var(--tw-gradient-to-position) !important; }
+.to-accent\/50 { --tw-gradient-to: hsl(var(--accent) / .5) var(--tw-gradient-to-position) !important; }
+.shadow-glow-sm { box-shadow: 0 0 14px hsl(var(--accent) / .3) !important; }
+.shadow-glow { box-shadow: 0 0 28px hsl(var(--accent) / .4) !important; }
+.shadow-glow-lg { box-shadow: 0 0 56px hsl(var(--accent) / .45) !important; }
+.hover\:bg-accent:hover { background-color: hsl(var(--accent)) !important; }
+.hover\:bg-accent\/5:hover { background-color: hsl(var(--accent) / .05) !important; }
+.hover\:bg-accent\/10:hover { background-color: hsl(var(--accent) / .1) !important; }
+.hover\:bg-accent-2:hover { background-color: hsl(var(--accent-2)) !important; }
+.hover\:text-accent:hover { color: hsl(var(--accent)) !important; }
+.hover\:text-accent-2:hover { color: hsl(var(--accent-2)) !important; }
+.hover\:border-accent:hover { border-color: hsl(var(--accent)) !important; }
+.hover\:border-accent\/20:hover { border-color: hsl(var(--accent) / .2) !important; }
+.hover\:border-accent\/30:hover { border-color: hsl(var(--accent) / .3) !important; }
+.hover\:border-accent\/40:hover { border-color: hsl(var(--accent) / .4) !important; }
+.hover\:border-accent\/50:hover { border-color: hsl(var(--accent) / .5) !important; }
+
 /* ═══════════════════════════════════════════════
    ANIMATIONS
 ═══════════════════════════════════════════════ */
@@ -197,8 +236,8 @@
   50%       { transform: translateY(-10px); }
 }
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 14px rgba(91,142,255,.3); }
-  50%       { box-shadow: 0 0 28px rgba(91,142,255,.6); }
+  0%, 100% { box-shadow: 0 0 14px hsl(var(--accent) / .3); }
+  50%       { box-shadow: 0 0 28px hsl(var(--accent) / .6); }
 }
 @keyframes spin-slow {
   to { transform: rotate(360deg); }

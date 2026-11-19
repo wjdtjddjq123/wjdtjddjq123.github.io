@@ -25,9 +25,9 @@ export default {
         'tx-2':      'hsl(var(--tx-2) / <alpha-value>)',
         'tx-3':      'hsl(var(--tx-3) / <alpha-value>)',
         accent: {
-          DEFAULT: '#5B8EFF',
-          2:       '#3D6FE8',
-          3:       '#7AABFF',
+          DEFAULT: 'hsl(var(--accent) / <alpha-value>)',
+          2:       'hsl(var(--accent-2) / <alpha-value>)',
+          3:       'hsl(var(--accent-3) / <alpha-value>)',
         },
         // Primitive scales
         primary: {
@@ -68,9 +68,9 @@ export default {
         md:  '0 4px 8px rgba(0,0,0,.12)',
         lg:  '0 10px 20px rgba(0,0,0,.14)',
         xl:  '0 20px 32px rgba(0,0,0,.14)',
-        'glow-sm':'0 0 14px rgba(91,142,255,.30)',
-        'glow':   '0 0 28px rgba(91,142,255,.40)',
-        'glow-lg':'0 0 56px rgba(91,142,255,.45)',
+        'glow-sm':'0 0 14px hsl(var(--accent) / .30)',
+        'glow':   '0 0 28px hsl(var(--accent) / .40)',
+        'glow-lg':'0 0 56px hsl(var(--accent) / .45)',
         none:'none',
       },
 

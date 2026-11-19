@@ -37,7 +37,7 @@ const Spinner = () => (
   </svg>
 )
 
-const Button = forwardRef<any, Props>(
+const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, Props>(
   ({ variant='primary', size='md', loading, icon, iconRight, fullWidth, className, children, ...rest }, ref) => {
     const cls = base(variant, size, fullWidth, loading, className)
     const content = (
@@ -49,10 +49,10 @@ const Button = forwardRef<any, Props>(
     )
     if ((rest as AnchorProps).as === 'a') {
       const { as: _, ...aRest } = rest as AnchorProps
-      return <a ref={ref} className={cls} {...aRest}>{content}</a>
+      return <a ref={ref as React.ForwardedRef<HTMLAnchorElement>} className={cls} {...aRest}>{content}</a>
     }
-    const { ...bRest } = rest as BtnProps
-    return <button ref={ref} className={cls} disabled={(bRest as any).disabled || loading} {...bRest}>{content}</button>
+    const { as: _, disabled, ...bRest } = rest as BtnProps
+    return <button ref={ref as React.ForwardedRef<HTMLButtonElement>} className={cls} disabled={disabled || loading} {...bRest}>{content}</button>
   }
 )
 Button.displayName = 'Button'

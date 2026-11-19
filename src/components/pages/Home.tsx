@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { ArrowRight, ArrowUpRight, ExternalLink, Github, Mail, MapPin, Send } from 'lucide-react'
+import { Link } from 'react-router-dom'
+import { ArrowRight, ArrowUpRight, ExternalLink, Github, Lock, Mail, MapPin, Send } from 'lucide-react'
 import gsap from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
 import PortfolioLayout from '@/components/templates/PortfolioLayout'
@@ -11,6 +12,18 @@ import { heroAnimation, revealOnScroll, revealCards, animateSkillBar, countUp } 
 import { cn } from '@/utils/cn'
 
 gsap.registerPlugin(ScrollTrigger)
+
+const projectImages: Record<number, string> = {
+  1: 'img/guest08.png',
+  2: 'img/CMMS.png',
+  3: 'img/project-design-system.svg',
+  4: 'img/project-plantpulse.svg',
+  5: 'img/our-neighborhood-regeneration.png',
+  6: 'img/urban-regeneration-main.png',
+}
+
+const internalProjectIds = new Set([1, 2])
+const internalCaseIds: Record<number, number> = { 1:9, 2:7 }
 
 /* ══════════════════════════════════════════════════════
    HERO
@@ -34,10 +47,10 @@ function Hero() {
   return (
     <section ref={ref} className="relative min-h-screen flex items-center overflow-hidden">
       {/* Grid bg */}
-      <div className="absolute inset-0 opacity-[.04]" style={{ backgroundImage:'linear-gradient(rgba(91,142,255,.6) 1px,transparent 1px),linear-gradient(90deg,rgba(91,142,255,.6) 1px,transparent 1px)', backgroundSize:'72px 72px' }}/>
+      <div className="hero-grid absolute inset-0 opacity-[.04]"/>
       {/* Orbs */}
       <div className="absolute -top-1/4 -right-1/4 w-[700px] h-[700px] rounded-full opacity-[.12] blur-[140px] bg-accent pointer-events-none"/>
-      <div className="absolute bottom-0 -left-1/4 w-[500px] h-[500px] rounded-full opacity-[.07] blur-[120px] bg-primary-400 pointer-events-none"/>
+      <div className="absolute bottom-0 -left-1/4 w-[500px] h-[500px] rounded-full opacity-[.07] blur-[120px] bg-accent pointer-events-none"/>
 
       <div className="wrap relative z-10 w-full pt-32 pb-24">
         {/* Badge */}
@@ -178,7 +191,7 @@ function Skills() {
         <p className="rv sec-label mb-4">{t('skills.label')}</p>
         <h2 className="rv t-h2 mb-4">{t('skills.title')}</h2>
         <p className="rv t-body-lg text-tx-2 mb-14 max-w-lg">{t('skills.sub')}</p>
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
           {skillGroups.map(g=>(
             <div key={g.category} className="rv p-6 rounded-2xl border border-border bg-surface hover:border-accent/30 transition-colors">
               <div className="flex items-center gap-3 mb-6">
@@ -254,8 +267,10 @@ function Projects() {
             <div key={p.id} data-card
               className="group rounded-2xl border border-border bg-surface overflow-hidden hover:border-accent/30 hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
               {/* Card header */}
-              <div className={cn('h-40 bg-gradient-to-br flex items-end p-5', p.color)}>
-                <Badge variant="accent">{p.category}</Badge>
+              <div className={cn('relative h-44 bg-gradient-to-br overflow-hidden', p.color)}>
+                <img src={projectImages[p.id]} alt={`${p.title} preview`} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                <Badge variant="accent" className="absolute bottom-4 left-4 bg-bg/80 backdrop-blur-sm">{p.category}</Badge>
               </div>
               <div className="p-5">
                 <div className="flex items-start justify-between gap-3 mb-2">
@@ -268,11 +283,20 @@ function Projects() {
                     <span key={tg} className="px-2.5 py-0.5 text-xs font-mono rounded-full border border-border text-tx-3 bg-surface-2">{tg}</span>
                   ))}
                 </div>
-               <a href={p.link} target="_blank" rel="noopener noreferrer">
-                <Button variant="ghost" size="xs" iconRight={<ArrowUpRight size={13}/>}>
-                  {t('projects.case')}
-                </Button>
-              </a>
+                {internalProjectIds.has(p.id) ? (
+                  <div className="flex items-center justify-between gap-3">
+                    <Badge variant="default" className="gap-1"><Lock size={10}/>Internal System</Badge>
+                    <Link to={`/design-work?work=${internalCaseIds[p.id]}`}>
+                      <Button variant="ghost" size="xs" iconRight={<ArrowRight size={13}/>}>View Case</Button>
+                    </Link>
+                  </div>
+                ) : (
+                  <a href={p.link} target="_blank" rel="noopener noreferrer">
+                    <Button variant="ghost" size="xs" iconRight={<ArrowUpRight size={13}/>}> 
+                      {t('projects.case')}
+                    </Button>
+                  </a>
+                )}
               </div>
             </div>
           ))}

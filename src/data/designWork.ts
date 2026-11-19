@@ -10,8 +10,8 @@ export interface DesignWork {
   client: string
   period: string
   color: string         // tailwind gradient classes (card header bg)
-  /** 'image' | 'video' */
-  mediaType: 'image' | 'video'
+  /** Portfolio media displayed in the detail modal. */
+  mediaType: 'image' | 'video' | 'pdf'
   /**
    * 실제 이미지/영상 URL을 넣어주세요.
    * 현재는 placeholder 값으로 채워져 있습니다.
@@ -96,6 +96,20 @@ export const designWorks: DesignWork[] = [
     mediaType: 'image',
     mediaUrl: 'img/deagu_nochong.png',
   },
+  {
+    id: 5,
+    title: '세미나 브로셔 편집 디자인',
+    category: 'Edit Design',
+    desc: '세미나 안내를 위한 브로셔 기획 및 편집 디자인 작업.',
+    tags: ['Brochure', 'Editorial', 'Illustrator'],
+    year: '2026',
+    client: 'Seminar Brochure',
+    period: '2026.09',
+    color: 'from-sky-500/20 to-indigo-500/20',
+    mediaType: 'pdf',
+    mediaUrl: '/pdf/seminar-brochure-2026.pdf',
+    featured: true,
+  },
  
   {
     id: 6,
@@ -109,6 +123,77 @@ export const designWorks: DesignWork[] = [
     color: 'from-pink-500/20 to-rose-500/20',
     mediaType: 'video',
     mediaUrl: 'https://www.youtube.com/embed/-SWDriQ4If8'
+  },
+  {
+    id: 12,
+    title: 'DMR 와처 영상',
+    category: 'Video',
+    desc: 'DMR 와처 프로젝트 영상 편집 작업.',
+    tags: ['Premiere Pro', 'Video Editing'],
+    year: '2026',
+    client: 'Portfolio',
+    period: '2026',
+    color: 'from-blue-500/20 to-cyan-500/20',
+    mediaType: 'video',
+    mediaUrl: 'https://www.youtube.com/embed/xPHEBiTmZ8g',
+  },
+  {
+    id: 13,
+    title: 'Motion Graphics Bounce',
+    category: 'Video',
+    desc: 'Bounce 콘셉트의 모션 그래픽 영상 작업.',
+    tags: ['After Effects', 'Motion Graphics'],
+    year: '2026',
+    client: 'Portfolio',
+    period: '2026',
+    color: 'from-violet-500/20 to-fuchsia-500/20',
+    mediaType: 'video',
+    mediaUrl: '/video/example Motion Graphics_Bounce_MASTER.mp4',
+  },
+  {
+    id: 14,
+    title: '상담플러스 프로모션 영상',
+    category: 'Video',
+    desc: '상담플러스 서비스 소개 및 프로모션 영상 작업.',
+    tags: ['Premiere Pro', 'After Effects', 'Promotion'],
+    year: '2026',
+    client: '상담플러스',
+    period: '2026',
+    color: 'from-emerald-500/20 to-teal-500/20',
+    mediaType: 'video',
+    mediaUrl: 'https://www.youtube.com/embed/1Dto9CjJ9Hw',
+  },
+  {
+    id: 15,
+    title: '요양병원 서비스 소개 배너 디자인',
+    category: 'Edit Design',
+    desc: '상담플러스와 보호자 앱의 주요 기능을 소개하는 세로형 홍보 배너 디자인.',
+    tags: ['Banner', 'Editorial', 'Healthcare', 'Promotion'],
+    year: '2026',
+    client: '요양병원 운영 플랫폼',
+    period: '2026',
+    color: 'from-blue-500/20 to-indigo-500/20',
+    mediaType: 'image',
+    mediaUrl: 'img/careus-banner-counsel-plus.png',
+    images: [
+      'img/careus-banner-counsel-plus.png',
+      'img/careus-banner-guardian-app.png',
+    ],
+    featured: true,
+  },
+  {
+    id: 16,
+    title: '요양병원 윤과장 홍보 부스 디자인',
+    category: 'Edit Design',
+    desc: '요양병원 윤과장 서비스 홍보를 위한 꺾인 3단 월 형태의 전시 부스 그래픽 디자인.',
+    tags: ['Booth', 'Exhibition', 'Editorial', 'Illustrator'],
+    year: '2026',
+    client: '요양병원 윤과장',
+    period: '2026.09',
+    color: 'from-blue-500/20 to-cyan-500/20',
+    mediaType: 'pdf',
+    mediaUrl: '/pdf/careus-booth-2026.pdf',
+    featured: true,
   },
 
    {
@@ -166,7 +251,7 @@ export const designWorks: DesignWork[] = [
     period: '2025.05 ~ 2025.12',
     color: 'from-pink-500/20 to-rose-500/20',
     mediaType: 'image',
-    mediaUrl: 'img/guest.png',
+    mediaUrl: 'img/guest08.png',
     images: [
       'img/guest01.png',
       'img/guest02.png',
@@ -208,10 +293,15 @@ export const designWorks: DesignWork[] = [
     period: '2026',
     color: 'from-lime-500/20 to-emerald-500/20',
     mediaType: 'image',
-    mediaUrl: 'img/careus-counsel-analysis.png',
+    mediaUrl: 'img/yoon04.png',
     images: [
-      'img/careus-counsel-analysis.png',
-      'img/careus-counsel-upload.png',
+      'img/yoon01.png',
+      'img/yoon02.png',
+      'img/yoon03.png',
+      'img/yoon04.png',
+      'img/yoon05.png',
+      'img/yoon06.png',
+      'img/yoon07.png',
     ],
     sourceUrl: 'https://www.figma.com/design/P5f7XuoBzkyrxVFxrkoXeN/%EC%9A%94%EC%96%91%EB%B3%91%EC%9B%90-%EC%9C%A4%EA%B3%BC%EC%9E%A5?node-id=183-11433',
     featured: true,

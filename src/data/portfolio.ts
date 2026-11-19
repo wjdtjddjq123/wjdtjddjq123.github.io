@@ -11,6 +11,7 @@ export const skillGroups = [
   { category:'Design Tools', icon:'✦', skills:[{ name:'Figma', pct:95 },{ name:'Adobe XD', pct:85 },{ name:'Illustrator', pct:80 },{ name:'Photoshop', pct:70 },{ name:'Premiere Pro', pct:40 }] },
   { category:'Frontend',     icon:'◈', skills:[{ name:'HTML / CSS', pct:97 },{ name:'JavaScript', pct:88 },{ name:'JSP', pct:72 },{ name:'Java', pct:30 }] },
   { category:'Tools & Infra',icon:'◉', skills:[{ name:'VS Code', pct:95 },{ name:'Eclipse', pct:85 },{ name:'Apache Tomcat', pct:50 },{ name:'PostgreSQL', pct:30 },{ name:'ArcGIS / OpenLayers', pct:20 }] },
+  { category:'AI Tools', icon:'AI', skills:[{ name:'Codex', pct:90 },{ name:'Claude', pct:85 },{ name:'Figma Make', pct:90 }] },
 ]
 
 export const experiences = [
