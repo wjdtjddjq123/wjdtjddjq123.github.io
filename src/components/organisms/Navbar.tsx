@@ -36,6 +36,7 @@ export default function Navbar() {
     root.style.setProperty('--accent-2', selected.accent2)
     root.style.setProperty('--accent-3', selected.accent3)
     localStorage.setItem('pf-accent', selected.name)
+    window.dispatchEvent(new CustomEvent('portfolio-accent-change', { detail: selected }))
   }, [accentName])
 
   const anchorLinks = isHome
