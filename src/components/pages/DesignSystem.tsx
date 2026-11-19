@@ -52,6 +52,7 @@ export default function DesignSystemPage() {
   const [tab2, setTab2] = useState('a')
   const [tab3, setTab3] = useState('a')
   const [drop, setDrop] = useState('')
+  const [accent, setAccent] = useState('222 100% 68%')
   const { section } = useParams()
   const sections = ['colors','typography','spacing','buttons','badges','inputs','avatars','tabs','cards','loaders'] as const
 
@@ -66,12 +67,31 @@ export default function DesignSystemPage() {
     })
   }, [section])
 
+  useEffect(() => {
+    const syncAccent = () => {
+      const value = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim()
+      if (value) setAccent(value)
+    }
+    syncAccent()
+    window.addEventListener('portfolio-accent-change', syncAccent)
+    return () => window.removeEventListener('portfolio-accent-change', syncAccent)
+  }, [])
+
   if (section && !sections.includes(section as typeof sections[number])) {
     return <Navigate to="/design-system" replace />
   }
 
+  const [accentHue = '222', accentSaturation = '100%'] = accent.split(' ')
+  const primaryScale = [
+    { n:'50',  v:`hsl(${accentHue} ${accentSaturation} 96%)` },
+    { n:'100', v:`hsl(${accentHue} ${accentSaturation} 90%)` },
+    { n:'300', v:`hsl(${accentHue} ${accentSaturation} 76%)` },
+    { n:'500', v:`hsl(${accent})` },
+    { n:'700', v:`hsl(${accentHue} ${accentSaturation} 42%)` },
+    { n:'900', v:`hsl(${accentHue} ${accentSaturation} 28%)` },
+  ]
   const colors = [
-    { group:'Primary', items:[{ n:'50',  v:'#eef3ff'},{ n:'100',v:'#dce7ff'},{ n:'300',v:'#90adff'},{ n:'500',v:'#5B8EFF'},{ n:'700',v:'#2c42d8'},{ n:'900',v:'#273489'}] },
+    { group:'Primary', items:primaryScale },
     { group:'Neutral', items:[{ n:'50',  v:'#f8f9fc'},{ n:'200',v:'#e2e5f0'},{ n:'400',v:'#8e93a8'},{ n:'600',v:'#4a4f63'},{ n:'800',v:'#1e2030'},{ n:'950',v:'#080910'}] },
     { group:'Status',  items:[{ n:'Success',v:'#22c880'},{ n:'Warning',v:'#f59e0b'},{ n:'Error',v:'#ef4444'},{ n:'Info',v:'#3b82f6'}] },
   ]
