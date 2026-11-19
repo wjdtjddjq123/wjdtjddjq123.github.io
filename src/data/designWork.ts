@@ -25,6 +25,9 @@ export interface DesignWork {
   /** 외부 디자인 원본 링크 (선택) */
   sourceUrl?: string
   featured?: boolean
+  role?: string
+  contribution?: string
+  highlights?: string[]
 }
 
 export const designWorks: DesignWork[] = [
@@ -196,18 +199,25 @@ export const designWorks: DesignWork[] = [
     featured: true,
   },
 
-   {
+  {
     id: 7,
-    title: 'Doosan CMMS System UI/UX Design',
+    title: 'CMMS System UI/UX Renewal',
     category: 'UI/UX',
-    desc: 'Doosan CMMS System의 UI/UX 디자인 작업.',
-    tags: ['Figma', 'Sketch', 'User Research'],
+    desc: '노후화된 CMMS 시스템의 화면 구조와 UI를 개선한 리뉴얼 프로젝트입니다. 복잡한 설비 관리 정보를 쉽게 파악하고 업무를 처리할 수 있도록 가독성과 사용성을 개선했습니다.',
+    tags: ['Figma', 'Adobe Illustrator', 'Eclipse', 'UI/UX'],
     year: '2025',
     client: 'Doosan Corporation',
-    period: '2025.05 ~ 2025.05  ',
+    period: '1개월',
     color: 'from-pink-500/20 to-rose-500/20',
     mediaType: 'image',
     mediaUrl: 'img/CMMS.png',
+    role: 'UI/UX 디자인 · 화면 구조 개선',
+    contribution: 'Design 100% · Development 10%',
+    highlights: [
+      '복잡한 설비 관리 정보의 가독성 개선',
+      '주요 기능과 입력 항목의 사용성 개선',
+      '화면과 공통 UI 요소의 일관성 정리',
+    ],
     images: [
       'img/cmms_white1.png',
       'img/cmms_white2.png',
@@ -225,16 +235,23 @@ export const designWorks: DesignWork[] = [
   },
   {
     id: 8,
-    title: 'Lotte KPI System UI/UX Design',
+    title: 'Lotte Beverage Factory KPI Dashboard',
     category: 'UI/UX',
-    desc: 'Lotte KPI System의 UI/UX 디자인 작업.',
-    tags: ['Figma', 'Sketch', 'User Research'],
+    desc: '롯데 음료공장 KPI 시스템의 추가 대시보드 페이지를 제작한 프로젝트입니다. 핵심 생산 지표를 빠르게 파악할 수 있도록 정보 우선순위와 시각화 구성을 개선했습니다.',
+    tags: ['Figma', 'Adobe Illustrator', 'Eclipse', 'Dashboard'],
     year: '2025',
     client: 'Lotte',
-    period: '2025.01 ~ 2025.01',
+    period: '3일',
     color: 'from-pink-500/20 to-rose-500/20',
     mediaType: 'image',
     mediaUrl: 'img/lotte.png',
+    role: 'UI/UX 디자인 · KPI 대시보드 페이지 제작',
+    contribution: 'Design 100% · Development 0%',
+    highlights: [
+      '주요 KPI를 빠르게 파악할 수 있는 정보 구조 설계',
+      '지표별 우선순위와 시각적 위계 개선',
+      '대시보드의 사용성과 데이터 시각화 개선',
+    ],
     images: [
       'img/lotte.png',
       'img/lotte2.png',
@@ -244,14 +261,22 @@ export const designWorks: DesignWork[] = [
     id: 9,
     title: 'Doosan guest System UI/UX Design',
     category: 'UI/UX',
-    desc: 'Doosan guest System의 UI/UX 디자인 작업.',
-    tags: ['Figma', 'Sketch', 'User Research'],
+    desc: '노후화된 방문객 예약·출입 관리 시스템을 개선한 UI/UX 리뉴얼 프로젝트입니다. 복잡한 정보와 입력 항목을 업무 흐름에 맞게 재구성하고, 화면의 가독성과 디자인 일관성을 높였습니다.',
+    tags: ['Figma', 'UI/UX', 'Admin System', 'Frontend'],
     year: '2025',
     client: 'Doosan Corporation',
     period: '2025.05 ~ 2025.12',
     color: 'from-pink-500/20 to-rose-500/20',
     mediaType: 'image',
     mediaUrl: 'img/guest08.png',
+    role: '화면 설계 · UI 디자인 · 프론트엔드 구현',
+    contribution: 'Design 100% · Development 30%',
+    highlights: [
+      '복잡하게 분산된 정보 구조 재정리',
+      '입력 항목의 우선순위와 그룹 체계 개선',
+      '조회 목록과 상세 정보의 가독성 강화',
+      '버튼·테이블·입력 폼의 디자인 일관성 확보',
+    ],
     images: [
       'img/guest01.png',
       'img/guest02.png',
@@ -284,16 +309,24 @@ export const designWorks: DesignWork[] = [
   },
   {
     id: 11,
-    title: '요양병원 상담플러스 UI/UX Design',
+    title: '윤과장 요양병원 행정 플랫폼',
     category: 'UI/UX',
-    desc: '요양병원 입원 상담 업무를 위한 상담플러스 화면을 설계했습니다. 다회차 상담 기록, 녹취 업로드, AI 상담요약과 상담전문을 한 화면에서 확인할 수 있도록 정보 구조와 작업 흐름을 개선했습니다.',
-    tags: ['Figma', 'UI/UX', 'Healthcare', 'Admin System', 'Responsive'],
+    desc: '요양병원의 행정 업무를 지원하는 플랫폼으로, 기존 시스템의 UI/UX를 추가로 개선하고 상담플러스·면회·문서빌더 등 신규 업무 페이지를 설계했습니다.',
+    tags: ['Figma', 'IntelliJ IDEA', 'Codex', 'Claude', 'VS Code'],
     year: '2026',
     client: '요양병원 운영 플랫폼',
-    period: '2026',
+    period: '2026.07 ~ 진행 중',
     color: 'from-lime-500/20 to-emerald-500/20',
     mediaType: 'image',
     mediaUrl: 'img/yoon04.png',
+    role: 'UI/UX 디자인 · 기존 화면 개선 · 추가 페이지 설계',
+    contribution: 'Development 10%',
+    highlights: [
+      '입원 상담 업무를 위한 상담플러스 페이지 제작',
+      '보호자와 병원의 면회 관리 페이지 제작',
+      '행정 문서 작성을 위한 문서빌더 페이지 제작',
+      '기존 행정 플랫폼의 UI/UX 추가 개선',
+    ],
     images: [
       'img/yoon01.png',
       'img/yoon02.png',

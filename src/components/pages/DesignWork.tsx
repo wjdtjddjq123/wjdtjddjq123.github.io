@@ -262,6 +262,35 @@ function Modal({ work, onClose }: { work: DesignWork; onClose: () => void }) {
           {/* Info */}
           <div className="p-6">
             <p className="t-body text-tx-2 mb-5 leading-relaxed">{work.desc}</p>
+            {(work.role || work.contribution) && (
+              <div className="grid gap-3 sm:grid-cols-2 mb-5">
+                {work.role && (
+                  <div className="rounded-xl border border-border bg-surface-2 p-4">
+                    <p className="t-label text-tx-3 mb-1.5">ROLE</p>
+                    <p className="text-sm font-medium text-tx leading-relaxed">{work.role}</p>
+                  </div>
+                )}
+                {work.contribution && (
+                  <div className="rounded-xl border border-border bg-surface-2 p-4">
+                    <p className="t-label text-tx-3 mb-1.5">CONTRIBUTION</p>
+                    <p className="text-sm font-medium text-accent">{work.contribution}</p>
+                  </div>
+                )}
+              </div>
+            )}
+            {work.highlights && work.highlights.length > 0 && (
+              <div className="mb-5">
+                <p className="t-label text-tx-3 mb-2">KEY IMPROVEMENTS</p>
+                <ul className="grid gap-2 sm:grid-cols-2">
+                  {work.highlights.map(highlight => (
+                    <li key={highlight} className="flex gap-2 text-sm leading-relaxed text-tx-2">
+                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+                      {highlight}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
             <div className="flex flex-wrap gap-1.5">
               {work.tags.map(tag => (
                 <span
