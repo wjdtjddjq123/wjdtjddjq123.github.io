@@ -15,6 +15,7 @@ export const skillGroups = [
 ]
 
 export const experiences = [
+  { company:'에스티메디', role:'재직 중', period:'26.07 — 현재', desc:'의료 서비스 모바일 앱 UI/UX 개선 및 사용자 중심 인터페이스 설계.' },
   { company:'㈜한국오픈솔루션', role:'사원', period:'24.12 — 25.12', desc:'제품 사이트, 사내 표준 템플릿, 두산에너빌리티 게스트하우스·CMMS 등 다수 프로젝트 UIUX 설계 및 개발 담당.' },
   { company:'아이티에스노아',   role:'주임', period:'24.03 — 24.07', desc:'도시주택보증공사 공공 GIS 시스템 UI/UX 개선 및 웹사이트 유지보수·개발.' },
   { company:'㈜태양',          role:'대리', period:'22.06 — 23.01', desc:'사내 사이트 유지보수 및 온/오프라인 광고 디자인.' },
